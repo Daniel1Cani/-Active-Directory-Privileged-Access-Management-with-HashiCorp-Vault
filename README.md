@@ -14,3 +14,19 @@ This folder contains redacted configuration files and reference screenshots used
 | **aws-kms-seal.png** | (Optional) AWS KMS seal configuration for auto-unseal. |
 
 > 🔒 Sensitive data has been redacted (no real credentials or tokens are included).
+
+---
+
+### 📸 Configuration Verification
+
+**Vault AD Config**
+![Vault AD Config](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/blob/screenshots/ad-config.png)
+
+**Vault Service Running**
+![Vault Service Running](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/blob/screenshots/vault-service.png)
+
+**Active Directory OU (Service Accounts)**
+![AD OU](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/blob/screenshots/ad-ou.png)
+
+**Vault Credential Rotation Output**
+![Vault Creds Admins](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/blob/screenshots/vault-creds-admins.png)
