@@ -32,16 +32,20 @@ It eliminates static service passwords by allowing Vault to dynamically rotate A
 
 ---
 
-## ⚙️ Configuration Steps
+## ⚙️ Configuration Summary
 
-### 1️⃣ Enable and Configure the AD Secrets Engine
+The lab is composed of three configuration layers:
 
-```bash
-vault secrets enable ad
+| Layer | Purpose | Key File(s) |
+|--------|----------|-------------|
+| **Vault Core Config** | Defines listener, storage, and seal method (AWS KMS auto-unseal). | [`vault.hcl`](../../tree/Config/Vault.hcl) |
+| **AD Secrets Engine** | Connects Vault to Active Directory via LDAPS using `svc-vault-bind`. | [`ad-config.png`](../../tree/Screenshots) |
+| **Policies & Roles** | Grants access and defines which AD accounts rotate dynamically. | [`admins.hcl`](../../tree/Config/Admins.hcl) |
 
-vault write ad/config `
-  binddn="CN=svc-vault-bind,OU=ServiceAccounts,DC=corp,DC=local" `
-  bindpass="SVC_BIND_PASSWORD" `
-  url="ldaps://dc01.corp.local" `
-  userdn="OU=ServiceAccounts,DC=corp,DC=local" `
-  insecure_tls=true
+> 🔗 Full configuration files and screenshots are documented in the [Config branch](../../tree/Config).
+
+Vault automatically:
+- Authenticates to AD via the bind account  
+- Dynamically rotates the managed account password (`vault-managed-admin`)  
+- Logs each rotation in the audit trail for traceability
+
