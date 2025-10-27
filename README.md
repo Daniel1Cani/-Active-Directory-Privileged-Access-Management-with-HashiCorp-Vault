@@ -1,41 +1,40 @@
-# 🧠 Active Directory Privileged Access Management with HashiCorp Vault
+# 🖼️ Vault + Active Directory PAM Lab – Screenshots
 
-## 📘 Overview
-This project demonstrates how to build an **open-source Privileged Access Management (PAM)** system using **HashiCorp Vault** integrated with **Active Directory (AD)**.  
-The setup eliminates static privileged passwords by allowing Vault to dynamically rotate AD service account credentials, just like CyberArk or BeyondTrust do in enterprise environments.
-
----
-
-## 🧩 Architecture
-
-**Components**
-- **Vault Server (Windows Server)** – Runs Vault with the Active Directory secrets engine.
-- **Domain Controller (DC01)** – Active Directory domain `corp.local`.
-- **Bind Account (`svc-vault-bind`)** – Used by Vault to connect securely to AD via LDAPS.
-- **Managed Account (`vault-managed-admin`)** – AD user whose password Vault rotates dynamically.
-- **Admin User (`dc_admin`)** – Authenticates to Vault through LDAP for management actions.
-
-### 🔄 Credential Rotation Flow
-1. Vault connects to AD using the bind account (`svc-vault-bind`).
-2. An authorized AD user logs into Vault via LDAP.
-3. The user runs `vault read ad/creds/admins`.
-4. Vault resets the password for `vault-managed-admin` and returns the new one.
-5. The old password immediately becomes invalid.
-6. Audit logs capture the entire event for traceability.
-
-*(Insert architecture diagram here — you can export one from draw.io or diagrams.net later.)*
+This branch contains verification screenshots captured during the setup and testing of the **Active Directory Privileged Access Management (PAM)** system using **HashiCorp Vault**.  
+Each screenshot demonstrates key points in the integration and credential rotation workflow.
 
 ---
 
-## ⚙️ Configuration Steps
+## 🔧 Configuration Verification
 
-### 1️⃣ Enable and Configure the AD Secrets Engine
-```powershell
-vault secrets enable ad
+**1️⃣ Vault AD Config**
+> Output of `vault read ad/config` confirming a successful connection to Active Directory via LDAPS.  
+![Vault_AD_Config](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/ad-config.png)
 
-vault write ad/config `
-  binddn="CN=svc-vault-bind,OU=ServiceAccounts,DC=corp,DC=local" `
-  bindpass="<SVC_BIND_PASSWORD>" `
-  url="ldaps://dc01.corp.local" `
-  userdn="OU=ServiceAccounts,DC=corp,DC=local" `
-  insecure_tls=true
+**2️⃣ Vault Service Running**
+> Shows Vault running on the Windows Server host (`vault.exe` process).  
+![Vault_Service](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/vault-service.png)
+
+**3️⃣ Active Directory OU (Service Accounts)**
+> Displays the `OU=ServiceAccounts` folder within Active Directory containing both the bind and managed accounts.  
+![AD_OU](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/ad-ou.png)
+
+**4️⃣ Vault Credential Rotation Output**
+> Demonstrates Vault dynamically rotating the `vault-managed-admin` account password.  
+![Vault_Creds_Admins](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/vault-creds-admins.png)
+
+---
+
+## 📜 Optional / Future Screenshots
+
+These can be added later to extend the documentation:
+| Screenshot | Purpose |
+|-------------|----------|
+| `vault-status.png` | Vault unsealed status output |
+| `aws-kms-seal.png` | AWS KMS seal configuration (if using auto-unseal) |
+| `vault-init.png` | Initial Vault operator init output (with keys redacted) |
+
+---
+
+> ⚠️ All screenshots were taken in a **controlled lab environment**.  
+> Sensitive data has been redacted or replaced with placeholders for security.
