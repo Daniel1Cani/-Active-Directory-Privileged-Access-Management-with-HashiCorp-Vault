@@ -4,9 +4,7 @@ This project demonstrates how to build an **open-source Privileged Access Manage
 
 It eliminates static service passwords by allowing Vault to dynamically rotate Active Directory credentials — similar to how enterprise PAM tools like CyberArk or BeyondTrust function, but with an open-source stack that can run fully in AWS or on-prem.
 
----
 
-![Architecture_Diagram](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/vault-ad-diagram.png)
 
 **Components**
 
