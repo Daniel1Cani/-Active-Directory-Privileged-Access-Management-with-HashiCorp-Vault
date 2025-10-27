@@ -20,13 +20,13 @@ This folder contains redacted configuration files and reference screenshots used
 ### 📸 Configuration Verification
 
 **Vault AD Config**
-![Vault AD Config](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/blob/screenshots/ad-config.png?raw=true)
+![Vault AD Config](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/screenshots/ad-config.png)
 
 **Vault Service Running**
-![Vault Service Running](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/blob/screenshots/vault-service.png?raw=true)
+![Vault Service Running](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/screenshots/vault-service.png)
 
 **Active Directory OU (Service Accounts)**
-![AD OU](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/blob/screenshots/ad-ou.png?raw=true)
+![AD OU](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/screenshots/ad-ou.png)
 
 **Vault Credential Rotation Output**
-![Vault Creds Admins](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/blob/screenshots/vault-creds-admins.png?raw=true)
+![Vault Creds Admins](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/screenshots/vault-creds-admins.png)
