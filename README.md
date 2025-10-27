@@ -37,4 +37,4 @@ This folder contains redacted configuration files and reference screenshots used
 
 **Vault Credential Rotation Output**  
 
-![Vault_Creds_Admins](https://raw.githubusercontent.com/Daniel1Cani/-Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/Screenshots/vault-creds-admins.png)
+![Vault_Creds_Admins](https://raw.githubusercontent.com/Daniel1Cani/-Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/Screenshots/vault-creds-admin.png)
