@@ -12,7 +12,7 @@ This branch contains PowerShell scripts used to automate and manage the **HashiC
 > 🛑 **Note:** All passwords and keys in these examples are placeholders and should be changed in your environment.
 
 ### 📸 Example Output
-![Vault_Status](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/vault-service.png)
+![Vault_Status](https://github.com/Daniel1Cani/-Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/vault-service.png)
 
 ---
 
