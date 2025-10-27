@@ -6,10 +6,6 @@ It eliminates static service passwords by allowing Vault to dynamically rotate A
 
 ---
 
-## 🏗️ Architecture
-
-**Architecture Diagram**
-
 ![Architecture_Diagram](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/vault-ad-diagram.png)
 
 **Components**
