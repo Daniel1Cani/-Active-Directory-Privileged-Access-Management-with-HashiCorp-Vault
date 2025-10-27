@@ -26,12 +26,15 @@ This folder contains redacted configuration files and reference screenshots used
 
 
 **Vault Service Running** 
+
 ![Vault_Service](https://raw.githubusercontent.com/Daniel1Cani/-Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/Screenshots/vault-service.png)
 
 
 **Active Directory OU (Service Accounts)**  
+
 ![AD_OU](https://raw.githubusercontent.com/Daniel1Cani/-Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/Screenshots/ad-ou.png)
 
 
 **Vault Credential Rotation Output**  
+
 ![Vault_Creds_Admins](https://raw.githubusercontent.com/Daniel1Cani/-Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/Screenshots/vault-creds-admins.png)
