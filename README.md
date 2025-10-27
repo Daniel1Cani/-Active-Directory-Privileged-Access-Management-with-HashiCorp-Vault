@@ -25,16 +25,5 @@ Each screenshot demonstrates key points in the integration and credential rotati
 
 ---
 
-## 📜 Optional / Future Screenshots
-
-These can be added later to extend the documentation:
-| Screenshot | Purpose |
-|-------------|----------|
-| `vault-status.png` | Vault unsealed status output |
-| `aws-kms-seal.png` | AWS KMS seal configuration (if using auto-unseal) |
-| `vault-init.png` | Initial Vault operator init output (with keys redacted) |
-
----
-
 > ⚠️ All screenshots were taken in a **controlled lab environment**.  
 > Sensitive data has been redacted or replaced with placeholders for security.
