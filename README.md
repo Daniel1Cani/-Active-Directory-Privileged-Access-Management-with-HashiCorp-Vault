@@ -1,41 +1,53 @@
 # 🧠 Active Directory Privileged Access Management with HashiCorp Vault
 
-## 📘 Overview
-This project demonstrates how to build an **open-source Privileged Access Management (PAM)** system using **HashiCorp Vault** integrated with **Active Directory (AD)**.  
-The setup eliminates static privileged passwords by allowing Vault to dynamically rotate AD service account credentials, just like CyberArk or BeyondTrust do in enterprise environments.
+This project demonstrates how to build an **open-source Privileged Access Management (PAM)** system using **HashiCorp Vault** integrated with **Active Directory (AD)** and **AWS Key Management Service (KMS)** for secure auto-unseal.
+
+It eliminates static service passwords by allowing Vault to dynamically rotate Active Directory credentials — similar to how enterprise PAM tools like CyberArk or BeyondTrust function, but with an open-source stack that can run fully in AWS or on-prem.
 
 ---
 
-## 🧩 Architecture
+## 🏗️ Architecture
+
+**Architecture Diagram**
+
+![Architecture_Diagram](https://github.com/Daniel1Cani/Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/vault-ad-diagram.png)
 
 **Components**
-- **Vault Server (Windows Server)** – Runs Vault with the Active Directory secrets engine.
-- **Domain Controller (DC01)** – Active Directory domain `corp.local`.
-- **Bind Account (`svc-vault-bind`)** – Used by Vault to connect securely to AD via LDAPS.
-- **Managed Account (`vault-managed-admin`)** – AD user whose password Vault rotates dynamically.
-- **Admin User (`dc_admin`)** – Authenticates to Vault through LDAP for management actions.
 
-### 🔄 Credential Rotation Flow
-1. Vault connects to AD using the bind account (`svc-vault-bind`).
-2. An authorized AD user logs into Vault via LDAP.
-3. The user runs `vault read ad/creds/admins`.
-4. Vault resets the password for `vault-managed-admin` and returns the new one.
-5. The old password immediately becomes invalid.
-6. Audit logs capture the entire event for traceability.
+| Component | Description |
+|------------|-------------|
+| **Vault Server (Windows Server)** | Runs the Vault service with the **Active Directory Secrets Engine**. It’s configured to use **AWS KMS auto-unseal**, meaning Vault automatically decrypts its master key using AWS’s Key Management Service after reboots — no manual key entry required. |
+| **Domain Controller (DC01)** | The Active Directory domain `corp.local`, hosting organizational units and user accounts. |
+| **Bind Account (`svc-vault-bind`)** | Lightweight AD service account used by Vault to connect securely to AD via **LDAPS**. |
+| **Managed Account (`vault-managed-admin`)** | An AD service account whose password Vault dynamically rotates based on TTL or manual trigger. |
+| **Admin User (`dc_admin`)** | Authenticates to Vault via LDAP and manages secrets, roles, and rotation policies. |
+| **AWS KMS** | Provides automatic unseal for Vault using a managed encryption key, improving resilience and eliminating manual unseal steps. |
 
-*(Insert architecture diagram here — you can export one from draw.io or diagrams.net later.)*
+---
+
+## 🔄 Credential Rotation Flow
+
+1. Vault connects to AD using the **bind account** (`svc-vault-bind`).
+2. The authorized admin (`dc_admin`) logs into Vault through **LDAP authentication**.
+3. The admin reads the role `ad/creds/admins` to retrieve dynamic credentials.
+4. Vault automatically resets the password for `vault-managed-admin` in Active Directory.
+5. The old password becomes invalid immediately.
+6. Vault audit logs record the event, preserving traceability.
+
+*(See the [Screenshots branch](../../tree/Screenshots) for live examples and verification images.)*
 
 ---
 
 ## ⚙️ Configuration Steps
 
 ### 1️⃣ Enable and Configure the AD Secrets Engine
-```powershell
+
+```bash
 vault secrets enable ad
 
 vault write ad/config `
   binddn="CN=svc-vault-bind,OU=ServiceAccounts,DC=corp,DC=local" `
-  bindpass="<SVC_BIND_PASSWORD>" `
+  bindpass="SVC_BIND_PASSWORD" `
   url="ldaps://dc01.corp.local" `
   userdn="OU=ServiceAccounts,DC=corp,DC=local" `
   insecure_tls=true
