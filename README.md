@@ -21,10 +21,11 @@ This folder contains redacted configuration files and reference screenshots used
 
 
 **Vault AD Config** 
+
 ![Vault_AD_Config](https://github.com/Daniel1Cani/-Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/raw/Screenshots/ad-config.png)
 
 
-**Vault Service Running**  
+**Vault Service Running** 
 ![Vault_Service](https://raw.githubusercontent.com/Daniel1Cani/-Active-Directory-Privileged-Access-Management-with-HashiCorp-Vault/Screenshots/vault-service.png)
 
 
